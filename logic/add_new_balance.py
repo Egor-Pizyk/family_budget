@@ -8,6 +8,7 @@ from v5.design.main_window_ui import Ui_MainWindow
 
 class AddNewBalance(Ui_MainWindow):
     def set_visible_data(self):
+        self.widget.setVisible(True)
         self.label_add_balance_name.setVisible(True)
         self.lineEdit_add_balance_name.setVisible(True)
         self.label_add_balance_balance.setVisible(True)
@@ -22,7 +23,9 @@ class AddNewBalance(Ui_MainWindow):
 
         self.lineEdit_add_balance_name.setFocus()
 
+
     def set_un_visible_data(self):
+        self.widget.setVisible(False)
         self.label_add_balance_name.setVisible(False)
         self.lineEdit_add_balance_name.setVisible(False)
         self.label_add_balance_balance.setVisible(False)

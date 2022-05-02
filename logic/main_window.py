@@ -1,5 +1,8 @@
+# -*- coding: utf-8 -*-
+
 import os
 import sys
+from typing import Type
 
 import pandas as pd
 from PyQt5 import QtWidgets
@@ -8,10 +11,12 @@ from PyQt5.QtWidgets import QTableWidgetItem, QApplication
 
 from v5.design import main_window_ui
 from v5.logic.add_new_balance import AddNewBalance
+from v5.logic.add_new_category import AddNewCategory
 from v5.logic.decoration.table_format import TableFormat
 from v5.logic.profit import Profit
 
 file_balance_name = str
+val = str
 
 class MainMenyUser(QtWidgets.QMainWindow, main_window_ui.Ui_MainWindow):
     def __init__(self):
@@ -41,12 +46,87 @@ class MainMenyUser(QtWidgets.QMainWindow, main_window_ui.Ui_MainWindow):
         self.profit.set_unvisible(self)
 
         self.pushButton_add_money.clicked.connect(lambda: self.add_money_to_balance(True))
+        self.pushButton_add_money.clicked.connect(self.all_unvisible)
         self.pushButton_del_money.clicked.connect(self.add_money_to_balance)
+        self.pushButton_del_money.clicked.connect(self.all_unvisible)
 
         self.pushButton_add_new_payment_cancel.clicked.connect(self.set_unvisible)
         self.pushButton_add_new_payment_ok.clicked.connect(lambda: self.profit_add(file_balance_name))
 
-        self.actionOptions1.triggered.connect(self.test)
+        self.new_category = AddNewCategory
+        # self.add_categorys()
+        self.new_category.set_unvisible_category_list(self)
+        self.new_category.set_unvisible_category_add(self)
+        self.new_category.set_unvisible_category_drop(self)
+
+        self.pushButton_add_new_category_2.clicked.connect(self.add_new_category_values)
+        self.commandLinkButtaon_change_caategory.clicked.connect(self.change_categorise)
+        self.pushButton_add_new_category_3.clicked.connect(self.drop_category)
+        self.pushButton_add_new_category.clicked.connect(self.add_category)
+        self.pushButton_delete_new_category_2.clicked.connect(self.del_category)
+        self.pushButton_cancel_change_category.clicked.connect(self.list_category_back)
+        self.pushButton_cancel_change_category_2.clicked.connect(self.new_category_back)
+        self.pushButton_add_new_category_4.clicked.connect(self.del_category_back)
+
+    def all_unvisible(self):
+        self.new_category.set_unvisible_category_list(self)
+        self.new_category.set_unvisible_category_add(self)
+        self.new_category.set_unvisible_category_drop(self)
+
+    def del_category_back(self):
+        self.new_category.set_visible_category_list(self)
+        self.new_category.set_unvisible_category_drop(self)
+
+    def new_category_back(self):
+        self.new_category.set_visible_category_list(self)
+        self.new_category.set_unvisible_category_add(self)
+
+    def list_category_back(self):
+        self.profit.set_visible_widget(self)
+        self.new_category.set_unvisible_category_list(self)
+
+    def change_categorise(self):
+        self.profit.set_unvisible(self)
+        self.new_category.set_visible_category_list(self)
+
+    def add_category(self):
+        self.new_category.set_visible_category_add(self)
+        self.new_category.set_unvisible_category_list(self)
+
+    def del_category(self):
+        self.new_category.set_visible_category_drop(self)
+        self.new_category.set_unvisible_category_list(self)
+
+    def add_new_category_values(self):
+        checker = self.new_category.add_new_category_values(self, val)
+        if checker:
+            if val == 'del':
+                self.add_categorys('del')
+            else:
+                self.add_categorys('add')
+            self.new_category.set_visible_category_list(self)
+            self.new_category.set_unvisible_category_add(self)
+
+    def drop_category(self):
+        value = self.comboBox_add_payment_category_3.currentText()
+        ff = self.new_category.drop_old_category(self, value, val)
+        self.new_category.set_visible_category_list(self)
+        self.new_category.set_unvisible_category_drop(self)
+        self.add_categorys(ff)
+
+
+    def add_categorys(self, cat='None'):
+        if cat == 'del':
+            data = pd.read_csv('../handler/csv_data/category/category_list_del.csv', encoding='windows-1251')
+        else:
+            data = pd.read_csv('../handler/csv_data/category/caegory_list.csv', encoding='windows-1251')
+        self.comboBox_add_payment_category_3.clear()
+        self.comboBox_add_payment_category.clear()
+        self.listWidget.clear()
+        for item in data['name'].values.tolist():
+            self.comboBox_add_payment_category_3.addItem(item)
+            self.comboBox_add_payment_category.addItem(item)
+            self.listWidget.addItem(item)
 
 
     # get data for comboBox (up-left) for balances data
@@ -126,8 +206,14 @@ class MainMenyUser(QtWidgets.QMainWindow, main_window_ui.Ui_MainWindow):
         self.profit.profit_add(self, file_balance_name)
 
     def add_money_to_balance(self, btn_name=False):
-        # print(btn_name)
+        global val
         self.profit.set_visible(self, btn_name)
+        if btn_name:
+            val = 'add'
+            self.add_categorys('add')
+        else:
+            val = 'del'
+            self.add_categorys('del')
 
 
 
