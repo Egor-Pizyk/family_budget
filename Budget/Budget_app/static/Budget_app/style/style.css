@@ -1,0 +1,441 @@
+#income_form, #expense_form, #create_category, #create_count, #set_transfer_to_card{
+    display: none;
+}
+
+
+#togglePassword{
+    margin-left: -56px;
+    margin-top: 21px;
+    cursor: pointer;
+    height: 0px;
+    width: 0px;
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+}
+.fa-eye:before{
+    font-size: 20px;
+}
+
+.login_password_field, .login_username_field{
+    display: flex;
+}
+
+body{
+    background-color: #E8EDDF;
+}
+
+.login_container, .reset_password_container{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    height: 700px;
+}
+
+.login_title{
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 500;
+    font-size: 70px;
+
+    color: #333533;
+
+    margin-bottom: 25px;
+}
+
+.form_block_title{
+    font-family: 'Russo One', sans-serif;;
+    /*font-weight: 400;*/
+    font-size: 40px;
+    color: #242423;
+}
+
+.form_block_header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.form_block_header a {
+    font-family: 'Jura';
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+
+    color: #E7874D;
+}
+
+.password_reset a{
+    font-family: 'Jura';
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+
+    color: #E7874D;
+}
+
+.password_reset{
+    margin-bottom: 25px;
+}
+
+.login_username_field input, .login_password_field input, .registration_username_field input, .registration_password_field input, .registration_password2_field input, .registration_email_field input, .password_change_email_field input, .password_reset_password1 input, .password_reset_password2 input{
+    font-family: 'Jura';
+    font-size: 20px;
+
+    background: #CFDBD5;
+    border-radius: 10px;
+    border: none;
+    padding: 18px 190px 18px 30px;
+
+    margin-bottom: 15px;
+}
+
+.registration_password2_field, .password_change_email_field, .password_reset_password2{
+    margin-bottom: 25px;
+}
+
+.login, .register_button, .send{
+    display: inline-block;
+    position: relative;
+
+    font-family: 'Russo One', sans-serif;;
+    font-size: 25px;
+    border: none;
+
+    color: #242423;
+    background: linear-gradient(140deg, #F5CB5C 0%, #E7874D 50.83%, #D83D3D 100%);
+    box-shadow: 0px 1px 5px rgba(36, 36, 35, 0.25);
+    border-radius: 10px;
+    cursor: pointer;
+
+    min-width: 453px;
+    min-height: 75px;
+}
+.register_button{
+    padding: 23px 117px;
+}
+
+.login > span, .send > span{
+    position: relative;
+    z-index: 1;
+}
+
+
+.login:after, .send:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(310deg, #F5CB5C 0%, #E7874D 50.83%, #D83D3D 100%);
+    box-shadow: 0px 1px 5px rgba(36, 36, 35, 0.25);
+    border-radius: 10px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.login:hover:after, .send:hover:after {
+    opacity: 1;
+}
+
+.form_block{
+    padding: 30px 40px;
+    background: #F4F7F0;
+    box-shadow: 0px 4px 7px rgba(36, 36, 35, 0.25);
+    border-radius: 30px;
+}
+
+.errorlist, .error{
+    max-width: 453px;
+    font-family: 'Jura';
+    font-size: 15px;
+    color: red;
+    margin-bottom: 15px;
+}
+
+.user_content{
+    display: flex;
+    align-items: center;
+}
+
+
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 50px;
+    max-width: 1528px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.imge_user, .imge_settings{
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(171, 171, 171, 1);
+    background-color: rgba(244, 246, 240, 1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.user{
+    margin-left: 15px;
+}
+
+.user_page, .message_block{
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+
+    color: #242423;
+}
+
+.logout a{
+    font-family: 'League Spartan', sans-serif;
+    font-size: 15px;
+    text-decoration: none;
+
+    color: #E7874D;
+}
+
+.transaction_buttons, .transaction_buttons div, .transaction_buttons button{
+    display: flex;
+}
+.transaction_buttons button{
+    align-items: center;
+    justify-content: center;
+    width: 128px;
+    padding: 10px 0;
+    border: none;
+    border-radius: 11px;
+}
+
+.transaction_buttons img{
+    margin-right: 5px;
+}
+
+.transaction_buttons div{
+    margin: 0 25px;
+}
+.imge_settings img{
+  transition: transform .5s ease-in-out;
+}
+
+.imge_settings img:hover{
+    transform: rotate(40deg);
+}
+
+.income button{
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+
+    color: rgba(7, 105, 35, 0.5);
+    background: rgba(32, 190, 76, 0.5);
+}
+.expense button{
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+
+    color: rgba(115, 10, 10, 0.5);
+    background: rgba(251, 33, 33, 0.5);
+}
+.transfer button{
+    font-family: 'League Spartan', sans-serif;
+
+    font-weight: 500;
+    font-size: 20px;
+
+    color: #ABABAB;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+
+
+.content_container{
+    display: flex;
+    margin: 20px 10px 0 10px;
+    background-color: #CFDBD5;
+    border-radius: 30px;
+    height: 85vh;
+}
+
+.container_user_count_info{
+    flex: 0 0 340px;
+    padding: 30px 30px;
+}
+
+.all_cash{
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+
+
+    color: #ABABAB;
+}
+
+.all_cash_count{
+    font-family: 'Russo One', sans-serif;
+    font-weight: 400;
+    font-size: 25px;
+
+    margin-top: 15px;
+    margin-bottom: 25px;
+
+    color: #242423;
+}
+
+.separator{
+    border-bottom: 1px solid #ABABAB;
+}
+
+
+
+.counts_header{
+    font-family: 'Russo One', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+
+    color: #242423;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.counts_header a, .counts_header input{
+    font-family: 'Russo One', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    text-decoration: none;
+
+    color: #E7874D;
+    border: none;
+    border-bottom: 1px dashed #E7874D;
+    background: none;
+    padding: 0;
+}
+
+.counts_list{
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+
+    margin-bottom: 20px;
+
+    color: #ABABAB;
+}
+
+.counts_list td{
+    padding: 5px 0;
+}
+
+.counts_list table{
+    width: 100%;
+}
+
+.counts_list .l{
+    text-align: left;
+}
+
+.counts_list .r{
+    text-align: right;
+}
+
+.container_user_main_table{
+    flex: 1 1 auto;
+    padding: 30px 40px;
+    background: #F4F6F0;
+    border-radius: 0 30px 30px 0;
+}
+
+.payment{
+    font-family: 'Russo One', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    padding: 12px 20px;
+
+    color: #CFDBD5;
+
+    background: #242423;
+    border-radius: 54px;
+    border: none;
+}
+
+.filters_search select{
+    font-family: 'Russo One', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    padding: 10px 15px;
+
+    color: #242423;
+
+    background: #CFDBD5;
+    border-radius: 7px;
+    border: none;
+
+    margin-right: 15px;
+}
+
+.filters_search_and_other_buttons{
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.filters_search_and_other_buttons, .filters_search, .filters_buttons{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filters_search{
+    flex: 1 1 auto;
+}
+
+.filters_buttons a{
+    margin-left: 15px;
+    background: #CFDBD5;
+    border-radius: 7px;
+    padding: 6px;
+}
+
+.search input{
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 12px;
+
+    color: #ABABAB;
+    padding: 12px;
+    width: 410px;
+
+    background: url(../images/Group_8.svg) no-repeat scroll 15px 7px;
+    padding-left:40px;
+    background-color: #CFDBD5;
+    border-radius: 7px;
+    border: none;
+}
+
+.main_table th, .main_table td{
+    border-bottom: 1px solid #ABABAB;
+
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+
+    color: #ABABAB;
+}

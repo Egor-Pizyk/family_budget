@@ -1,0 +1,35 @@
+{% extends 'Budget_app/base.html' %}
+{% load static %}
+
+{% block user_auth %}
+    <div class="login_block">
+        <div class="login_container">
+            <div class="login_title">Family Budget</div>
+            <div class="form_block">
+                <div class="form_block_header">
+                    <div class="form_block_title">Вхід</div>
+                    <a href="{% url 'b_app:register' %}" class="register_link">Немає акаунту? Зареєструйтесь</a>
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="login_username_field">
+                        <input type="text" name="username" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username" placeholder="Ваш логін">
+                    </div>
+                    <div class="login_password_field">
+                        <input type="password" name="password" autocomplete="current-password" required="" id="id_password" placeholder="Пароль">
+                        <i class="far fa-eye" id="togglePassword"></i>
+                    </div>
+
+                    {{ form.non_field_errors }}
+
+                    <div class="password_reset"><a href="{% url 'b_app:password-reset' %}">Забули пароль?</a></div>
+                    <div>
+                        <button type="submit" class="login"><span>Увійти</span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'Budget_app/js/show_password.js' %}"></script>
+{% endblock %}

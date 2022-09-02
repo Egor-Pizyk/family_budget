@@ -1,0 +1,25 @@
+{% load static %}
+
+<div class="header">
+        <div class="user_content">
+            <div class="imge_user"><img src="{% static 'Budget_app/images/Group 21.svg' %}" alt=""></div>
+            <div class="user">
+                <div class="user_page">
+                    {% if user.first_name and user.last_name %}
+                        {{ user.first_name }} {{ user.last_name }}
+                    {% else %}
+                        {{ user.username }}
+                    {% endif %}
+                </div>
+                <div class="logout"><a href="{% url 'b_app:logout' %}" class="logout_link">Вийти</a></div>
+            </div>
+        </div>
+        <div class="transaction_buttons">
+            <div class="income"><button id="Income"><img src="{% static 'Budget_app/images/Group 6.svg' %}" alt="">Дохід</button></div>
+            <div class="expense"><button id="Expense"><img src="{% static 'Budget_app/images/Vector (1).svg' %}" alt="">Витрата</button></div>
+            <div class="transfer"><button id="new_transfer"><img src="{% static 'Budget_app/images/Group 5.svg' %}" alt="">Переказ</button></div>
+        </div>
+        <div class="setting_button">
+            <div class="imge_settings"><img src="{% static 'Budget_app/images/Group 20.svg' %}" alt=""></div>
+        </div>
+    </div>

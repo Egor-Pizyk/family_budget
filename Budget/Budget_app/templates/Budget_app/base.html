@@ -1,0 +1,53 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+    <link rel="stylesheet" href="{% static 'Budget_app/style/style.css' %}">
+    <link rel="stylesheet" href="{% static 'Budget_app/style/normalize.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@700&family=League+Spartan:wght@500&family=Russo+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="background">
+    <div class="content">
+
+    {% block content %}
+    {% endblock %}
+
+{% if user.is_authenticated %}
+
+    {# set header block #}
+    {% include 'Budget_app/header.html' %}
+
+    {% include 'Budget_app/main_content.html' %}
+
+{#    <input type="submit" id="new_category" value="Add new category">#}
+
+    {% include 'Budget_app/set_new_cat_form.html' %}
+
+    {% include 'Budget_app/set_new_count_form.html' %}
+
+    {% include 'Budget_app/set_transfer_to_card_form.html' %}
+
+    {% include 'Budget_app/set_transaction_form.html' %}
+
+{% else %}
+    {% block user_auth %}
+    {% endblock %}
+{% endif %}
+
+
+    </div>
+</div>
+
+</body>
+
+<script src="{% static 'Budget_app/js/script.js' %}"></script>
+</html>

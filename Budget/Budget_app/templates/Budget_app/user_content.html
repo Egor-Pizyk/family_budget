@@ -1,0 +1,10 @@
+<a href="{% url 'b_app:logout' %}" class="logout_link">logout</a><br>
+Hello {{ user.first_name }}!<br>
+
+{% for count in count_list %}
+    {{ count.count_name }} {{ count.balance }}<br>
+{% endfor %}
+
+{% for item in currency_values %}
+    {{ item.cc }} - {{ item.rate }}<br>
+{% endfor %}

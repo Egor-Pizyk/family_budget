@@ -1,0 +1,16 @@
+<form action="{% url 'b_app:set_transfer_to_card' %}" method="post" id="set_transfer_to_card">
+    <div id="hide_transfer_form">x</div>
+    {% csrf_token %}
+    <select name="from_count" class="from_count">
+        {% for count in count_list %}
+            <option value="{{ count.pk }}">{{ count.count_name }}</option>
+        {% endfor %}
+    </select>
+    <select name="to_count" class="to_count">
+        {% for count in count_list %}
+            <option value="{{ count.pk }}">{{ count.count_name }}</option>
+        {% endfor %}
+    </select>
+    <input type="number" name="transaction_value">
+    <input type="submit" value="create">
+</form>

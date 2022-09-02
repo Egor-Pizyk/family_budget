@@ -1,0 +1,8 @@
+<form action="{% url 'b_app:create_count' %}" method="post" id="create_count">
+    <div id="hide_count_form">x</div>
+    {% csrf_token %}
+    <input type="text" name="count_name">
+    <input type="text" name="balance">
+    <input type="text" name="card_number">
+    <input type="submit" value="create">
+</form>

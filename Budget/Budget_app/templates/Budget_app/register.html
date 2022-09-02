@@ -1,0 +1,42 @@
+{% extends 'Budget_app/base.html' %}
+
+{% block user_auth %}
+    <div class="login_block">
+        <div class="login_container">
+            <div class="login_title">Family Budget</div>
+            <div class="form_block">
+                <div class="form_block_header">
+                    <div class="form_block_title">Реєстрація</div>
+                    <a href="{% url 'b_app:login' %}">Назад</a>
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="registration_username_field">
+                        <input type="text" name="username" maxlength="30" required="" id="id_username" placeholder="Логін">
+                    </div>
+                    <div class="registration_email_field">
+                        <input type="email" name="email" maxlength="30" required="" id="id_email" placeholder="E-mail">
+                    </div>
+                    <div class="registration_password_field">
+                        <input type="password" name="password1" maxlength="30" minlength="8" required="" placeholder="Пароль" id="id_password1">
+                    </div>
+                    <div class="registration_password2_field">
+                        <input type="password" name="password2" maxlength="30" minlength="8" required="" placeholder="Повтор пароля" id="id_password2">
+                    </div>
+
+                    {% for field, errors in form.errors.items %}
+                        {% for error in errors %}
+                            <div class="error">{{ error }}</div>
+                        {% endfor %}
+                    {% endfor %}
+
+
+                    <div>
+                        <button type="submit" class="register_button"><span>Зареєструватись</span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
