@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'Budget_app.apps.BudgetAppConfig',
+    'django.contrib.humanize',
+
 ]
 
 MIDDLEWARE = [

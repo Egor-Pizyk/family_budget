@@ -1,53 +1,29 @@
 {% load static %}
+{% load humanize %}
 
 <div class="content_table">
     <div class="table">
-        <table class="main_table">
+        <table class="main_table scroll-table">
             <tr class="table_header">
-                <th>Дата</th>
-                <th>Сума</th>
-                <th>Разунок/Залишок</th>
-                <th>Контрагент</th>
-                <th>Категорія</th>
-                <th>Проект</th>
-                <th>Дод.інфа</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-                <td>7</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-                <td>7</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-                <td>7</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-                <td>7</td>
+            {% for i in table_header %}
+                <th class="{{ i.class_name }}">{{ i.header }}</th>
+            {% endfor %}
             </tr>
         </table>
+        <div class="scroll-table-body">
+            <table class="main_table">
+                {% for i in count_values %}
+                    <tr>
+                        <td class="create_dt">{{ i.create_dt|date:"d-m-y" }}</td>
+                        <td class="transaction_value">{{ i.transaction_value|floatformat|intcomma  }} {{ i.currency.currency_name }}</td>
+                        <td class="count_list_id">{{ i.count_list_id.count_name }}</td>
+                        <td class="category">{{ i.category.category_name }}</td>
+                        <td class="description">{{ i.description|truncatechars:15 }}</td>
+                        <td class="remainder">{{ i.remainder|floatformat  }}</td>
+                        <td class="detail"><a href="#">Докладнiше</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
     </div>
 </div>

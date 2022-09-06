@@ -9,9 +9,29 @@ from django.db.models import Sum
 
 from Budget_app.forms import RegisterUserForm, CreateCategoryForm, CreateCountForm, CreateCountValueForm, \
     CreateTransferToCard, UserLoginForm, PasswordResetForm, PasswordResetDoneForm
-from Budget_app.models import CategoriesList, CountsList, CurrencyList
+from Budget_app.models import CategoriesList, CountsList, CurrencyList, CountValues
 from Budget_app.utils import set_remainder, set_transfer_utils, get_currency_values, get_data_from_monobank, \
     email_sender
+
+
+headers = [
+    # {'create_dt': 'Дата'},
+    # {'transaction_value': 'Сума'},
+    # {'count_list_id': 'Рахунок'},
+    # {'category': 'Категория'},
+    # {'description': 'Описание'},
+    # {'remainder': 'Остаток'},
+
+    {'header': 'Дата', 'class_name': 'create_dt'},
+    {'header': 'Сума', 'class_name': 'transaction_value'},
+    {'header': 'Рахунок', 'class_name': 'count_list_id'},
+    {'header': 'Категория', 'class_name': 'category'},
+    {'header': 'Описание', 'class_name': 'description'},
+    {'header': 'Остаток', 'class_name': 'remainder'},
+    {'header': 'Iнформація', 'class_name': 'info'},
+]
+
+
 
 
 @login_required
@@ -22,6 +42,8 @@ def home(request):
         'category_list_income': CategoriesList.objects.filter(user_id=request.user.pk, transaction_type=True),
         'category_list_expense': CategoriesList.objects.filter(user_id=request.user.pk, transaction_type=False),
         'currency_list': CurrencyList.objects.all(),
+        'count_values': CountValues.objects.filter(count_list_id__user_id=request.user.pk),
+        'table_header': headers,
         'currency_values': get_currency_values()
     }
     # get_data_from_monobank()

@@ -12,7 +12,7 @@ from Budget_app.models import CountsList
 
 def set_remainder(request):
     count = CountsList.objects.get(id=request.POST['count_list_id'])
-    if request.POST['transaction_type'] == '1':
+    if request.POST['transaction_type'] == 'True':
         count.balance += float(request.POST['transaction_value'])
     else:
         count.balance -= float(request.POST['transaction_value'])
