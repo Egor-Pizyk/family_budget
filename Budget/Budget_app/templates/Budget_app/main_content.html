@@ -20,7 +20,7 @@
                     {%  for item in count_list %}
                         <tr>
                             <td class="l">{{ item.count_name }}</td>
-                            <td class="r">{{ item.balance }}</td>
+                            <td class="r">{{ item.balance|floatformat }}</td>
                         </tr>
                     {% endfor %}
                 </table>
