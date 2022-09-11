@@ -38,16 +38,24 @@ def get_currency_values():
     return returned_cur
 
 
-def get_data_from_monobank():
-    token = 'ulPqie3G38PT6H3pfyZ-cv4IdJKvBbgDsEGH6fGhIeiU'
-    mono = monobank.Client(token)
+def get_more_info():
+    url = f'https://api.monobank.ua/personal/statement/{settings.MONO_COUNT_1}/1659350532/1660128132'
+    response = requests.get(url, headers={"X-Token": settings.MONO_TOKEN})
+    data = response.json()
+    print(data)
 
+    return data
+
+
+def get_data_from_monobank():
     url = f'https://api.monobank.ua/personal/client-info'
-    response = requests.get(url, headers={"X-Token": "ulPqie3G38PT6H3pfyZ-cv4IdJKvBbgDsEGH6fGhIeiU"})
+    response = requests.get(url, headers={"X-Token": settings.MONO_TOKEN})
     data = response.json()
     print(data)
     for i in data['accounts']:
         print(i)
+
+    return data
 
 
 def email_sender(request):

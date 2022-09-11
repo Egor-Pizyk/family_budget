@@ -44,6 +44,15 @@
 {% endif %}
 
 
+    {% for item, values in data1.items %}
+        {% if item == 'accounts' %}
+            {% for value in values %}
+                <p>{{ value.maskedPan }} - {{ value.currencyCode }} - {{ value.balance }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+
+
     </div>
 </div>
 
