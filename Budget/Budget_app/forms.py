@@ -23,7 +23,7 @@ class CreateCategoryForm(forms.ModelForm):
 class CreateCountForm(forms.ModelForm):
     class Meta:
         model = CountsList
-        fields = ('count_name', 'balance', 'card_number')
+        fields = ('count_name', 'balance')
 
 
 class CreateCountValueForm(forms.ModelForm):
@@ -95,11 +95,6 @@ class PasswordResetForm(forms.Form):
         return cleaned_data
 
 
-    # class Meta:
-    #     model = User
-    #     fields = ('email',)
-
-
 class PasswordResetDoneForm(forms.Form):
     password1 = forms.CharField(max_length=30, min_length=8, required=True)
     password2 = forms.CharField(max_length=30, min_length=8, required=True)
@@ -115,6 +110,10 @@ class PasswordResetDoneForm(forms.Form):
         fields = ('password1', 'password2')
 
 
+# class AddCountFromMonoForm(forms.ModelForm):
+#     class Meta:
+#         model = CountsList
+#         fields = ('count_name', 'balance')
 
 
 

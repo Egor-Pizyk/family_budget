@@ -18,40 +18,43 @@
 <div class="background">
     <div class="content">
 
-    {% block content %}
-    {% endblock %}
+        {% block content %}
+        {% endblock %}
 
-{% if user.is_authenticated %}
+        {% if user.is_authenticated %}
 
-    {# set header block #}
-    {% include 'Budget_app/header.html' %}
+            {# set header block #}
+            {% include 'Budget_app/header.html' %}
 
-    {% include 'Budget_app/main_content.html' %}
+            {% include 'Budget_app/main_content.html' %}
 
-{#    <input type="submit" id="new_category" value="Add new category">#}
+{#            <input type="submit" id="new_category" value="Add new category">#}
 
-    {% include 'Budget_app/set_new_cat_form.html' %}
+            {% include 'Budget_app/set_new_cat_form.html' %}
 
-    {% include 'Budget_app/set_new_count_form.html' %}
+            {% include 'Budget_app/set_new_count_form.html' %}
 
-    {% include 'Budget_app/set_transfer_to_card_form.html' %}
+            {% include 'Budget_app/set_transfer_to_card_form.html' %}
 
-    {% include 'Budget_app/set_transaction_form.html' %}
+            {% include 'Budget_app/set_transaction_form.html' %}
 
-{% else %}
-    {% block user_auth %}
-    {% endblock %}
-{% endif %}
-
-
-    {% for item, values in data1.items %}
-        {% if item == 'accounts' %}
-            {% for value in values %}
-                <p>{{ value.maskedPan }} - {{ value.currencyCode }} - {{ value.balance }}</p>
-            {% endfor %}
+        {% else %}
+            {% block user_auth %}
+            {% endblock %}
         {% endif %}
-    {% endfor %}
 
+        <form action="{% url 'b_app:set_new_mono_count' %}" method="post">
+            {% csrf_token %}
+            {% for item, values in data1.items %}
+                {% if item == 'accounts' %}
+                    {% for value in values %}
+                        <input type="checkbox" name="card_data_{{ forloop.counter0 }}" id="card_number_{{ forloop.counter0 }}" value="{{ value.id }};{{ value.balance }};{{ value.maskedPan }}">
+                        <label for="card_number_{{ forloop.counter0 }}">{{ value.maskedPan }}</label> <br>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            <input type="submit">
+        </form>
 
     </div>
 </div>

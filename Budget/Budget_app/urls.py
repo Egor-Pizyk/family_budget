@@ -15,6 +15,9 @@ urlpatterns = [
     path('create_trasaction/', views.create_transaction, name='create_transaction'),
     path('set-transfer/', views.set_transfer_to_card, name='set_transfer_to_card'),
 
+
     path('', views.home, name='home'),
     # path('message-page', views.messages_page, name='messages_page'),
+
+    path('set_new_mono_count/', views.AddCountFromMono.as_view(), name='set_new_mono_count'),
 ]

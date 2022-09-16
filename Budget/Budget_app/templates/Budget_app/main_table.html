@@ -12,17 +12,19 @@
         </table>
         <div class="scroll-table-body">
             <table class="main_table">
-                {% for i in count_values %}
-                    <tr>
-                        <td class="create_dt">{{ i.create_dt|date:"d-m-y" }}</td>
-                        <td class="transaction_value">{{ i.transaction_value|floatformat|intcomma  }} {{ i.currency.currency_name }}</td>
-                        <td class="count_list_id">{{ i.count_list_id.count_name }}</td>
-                        <td class="category">{{ i.category.category_name }}</td>
-                        <td class="description">{{ i.description|truncatechars:15 }}</td>
-                        <td class="remainder">{{ i.remainder|floatformat  }}</td>
-                        <td class="detail"><a href="#">Докладнiше</a></td>
-                    </tr>
-                {% endfor %}
+                <form action="" method="post">
+                    {% for i in count_values %}
+                        <tr>
+                            <td class="row_id"><input type="checkbox" name="row_{{ forloop.counter0 }}" id="" value="{{ forloop.counter0 }}"></td>
+                            <td class="create_dt">{{ i.create_dt|date:"d-m-y" }}</td>
+                            <td class="transaction_value">{{ i.transaction_value|floatformat|intcomma  }} {{ i.currency.currency_name }}</td>
+                            <td class="count_list_id">{{ i.count_list_id.count_name }}</td>
+                            <td class="category">{{ i.category.category_name }}</td>
+                            <td class="description">{{ i.description|truncatechars:15 }}</td>
+                            <td class="remainder">{{ i.remainder|floatformat  }}</td>
+                        </tr>
+                    {% endfor %}
+                </form>
             </table>
         </div>
     </div>

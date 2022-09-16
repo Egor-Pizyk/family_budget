@@ -14,7 +14,7 @@ class CountsList(models.Model):
     count_name = models.CharField(max_length=255)
     balance = models.FloatField(null=True, blank=True)
     create_dt = models.DateTimeField(auto_now_add=True)
-    card_number = models.CharField(max_length=255)
+    card_token = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return f'{self.user_id.first_name} {self.user_id.last_name} {self.count_name}'

@@ -1,9 +1,11 @@
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import CreateView
 from django.db.models import Sum
 
@@ -14,13 +16,13 @@ from Budget_app.utils import set_remainder, set_transfer_utils, get_currency_val
     email_sender, get_more_info
 
 headers = [
+    {'header': '#', 'class_name': 'row_id'},
     {'header': 'Дата', 'class_name': 'create_dt'},
     {'header': 'Сума', 'class_name': 'transaction_value'},
     {'header': 'Рахунок', 'class_name': 'count_list_id'},
     {'header': 'Категория', 'class_name': 'category'},
     {'header': 'Описание', 'class_name': 'description'},
     {'header': 'Остаток', 'class_name': 'remainder'},
-    {'header': 'Iнформація', 'class_name': 'info'},
 ]
 
 
@@ -34,7 +36,7 @@ def home(request):
         'currency_list': CurrencyList.objects.all(),
         'count_values': CountValues.objects.filter(count_list_id__user_id=request.user.pk),
         'table_header': headers,
-        'currency_values': get_currency_values(),
+        # 'currency_values': get_currency_values(),
         'data1': get_data_from_monobank(),
         # 'data2': get_more_info()
     }
@@ -54,6 +56,21 @@ class AuthUserView(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('b_app:home')
+
+
+class AddCountFromMono(LoginRequiredMixin, View):
+    login_url = reverse_lazy('b_app:login')
+
+    def post(self, request):
+        user_id = request.user.pk
+        for item in request.POST:
+            if item != 'csrfmiddlewaretoken':
+                card_token, balance, count_name = request.POST[item].split(';')
+                CountsList.objects.create(
+                    user_id_id=user_id, count_name=count_name[2:-2], balance=balance,
+                    card_token=card_token
+                )
+        return redirect('b_app:home')
 
 
 @login_required

@@ -459,6 +459,11 @@ body{
     overflow-x: auto;
 }
 
+.main_table td:first-child, .main_table th:first-child{
+    width: 20px;
+    width: 40px;
+}
+
 .main_table{
     table-layout: fixed;
 }
