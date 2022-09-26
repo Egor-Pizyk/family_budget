@@ -37,7 +37,7 @@ def home(request):
         'count_values': CountValues.objects.filter(count_list_id__user_id=request.user.pk),
         'table_header': headers,
         # 'currency_values': get_currency_values(),
-        'data1': get_data_from_monobank(),
+        # 'data1': get_data_from_monobank(),
         # 'data2': get_more_info()
     }
     # get_data_from_monobank()

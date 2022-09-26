@@ -1,47 +1,119 @@
-<form action="{% url 'b_app:create_transaction' %}" method="post" id="income_form">
-    <div id="hide_transaction_income_form">x</div>
-    {% csrf_token %}
-    <select name="count_list_id">
-        {% for count in count_list %}
-            <option value="{{ count.pk }}">{{ count.count_name }}</option>
-        {% endfor %}
-    </select>
-    <input type="radio" name="transaction_type" id="transaction_income_type_id" checked value="True">
-    <input type="text" name="transaction_value">
-    <input type="text" name="description">
-    <select name="category" class="category_income">
-        {% for category_i in category_list_income %}
-            <option value="{{ category_i.pk }}">{{ category_i.category_name }}</option>
-        {% endfor %}
-    </select>
-    <select name="currency">
-        {% for currency in currency_list %}
-            <option value="{{ currency.pk }}">{{ currency.currency_name }}</option>
-        {% endfor %}
-    </select>
-    <input type="submit" value="create">
-</form>
+{% load static %}
 
-<form action="{% url 'b_app:create_transaction' %}" method="post" id="expense_form">
-    <div id="hide_transaction_expense_form">x</div>
-    {% csrf_token %}
-    <select name="count_list_id">
-        {% for count in count_list %}
-            <option value="{{ count.pk }}">{{ count.count_name }}</option>
-        {% endfor %}
-    </select>
-    <input type="radio" name="transaction_type" id="transaction_expense_type_id" checked value="False">
-    <input type="text" name="transaction_value">
-    <input type="text" name="description">
-    <select name="category" class="category_expense">
-        {% for category_e in category_list_expense %}
-            <option value="{{ category_e.pk }}">{{ category_e.category_name }}</option>
-        {% endfor %}
-    </select>
-    <select name="currency">
-        {% for currency in currency_list %}
-            <option value="{{ currency.pk }}">{{ currency.currency_name }}</option>
-        {% endfor %}
-    </select>
-    <input type="submit" value="create">
-</form>
+<div class="pop_up_form" id="pop_up_form">
+    <div class="wrapper">
+        <form action="{% url 'b_app:create_transaction' %}" method="post" id="income_form">
+            <div class="form_label_list">
+                <ul>
+                    <li>Рахунок</li>
+                    <li>Сума</li>
+                    <li>Опис</li>
+                    <li>Категорія</li>
+                    <li>Валюта</li>
+                </ul>
+            </div>
+
+            <div class="form_content">
+                <div class="pop_up_header">
+                    <div class="pop_up_form_header">Додати прибуток</div>
+                    <img src="{% static 'Budget_app/images/Group 24.svg' %}" alt="" id="hide_transaction_income_form">
+                </div>
+                <div class="pop_up_form_block">
+                    {% csrf_token %}
+                    <ul>
+                        <li>
+                            <select name="count_list_id">
+                                {% for count in count_list %}
+                                    <option value="{{ count.pk }}">{{ count.count_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </li>
+                        <li>
+                            <input type="radio" name="transaction_type" id="transaction_income_type_id" checked value="True">
+                        </li>
+                        <li>
+                            <input type="text" name="transaction_value">
+                        </li>
+                        <li>
+                            <input type="text" name="description">
+                        </li>
+                        <li>
+                            <select name="category" class="category_income">
+                                {% for category_i in category_list_income %}
+                                    <option value="{{ category_i.pk }}">{{ category_i.category_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </li>
+                        <li>
+                            <select name="currency">
+                                {% for currency in currency_list %}
+                                    <option value="{{ currency.pk }}">{{ currency.currency_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </li>
+                    </ul>
+                    <input type="submit" class="add_transaction" value="Додати">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="pop_up_form" id="pop_up_form_1">
+    <div class="wrapper">
+        <form action="{% url 'b_app:create_transaction' %}" method="post" id="expense_form">
+            <div class="form_label_list">
+                <ul>
+                    <li>Рахунок</li>
+                    <li>Сума</li>
+                    <li>Опис</li>
+                    <li>Категорія</li>
+                    <li>Валюта</li>
+                </ul>
+            </div>
+
+            <div class="form_content">
+                <div class="pop_up_header">
+                    <div class="pop_up_form_header">Додати витрату</div>
+                    <img src="{% static 'Budget_app/images/Group 24.svg' %}" alt="" id="hide_transaction_expense_form_1">
+                </div>
+                <div class="pop_up_form_block">
+                    {% csrf_token %}
+                    <ul>
+                        <li>
+                            <select name="count_list_id">
+                                {% for count in count_list %}
+                                    <option value="{{ count.pk }}">{{ count.count_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </li>
+                        <li>
+                            <input type="radio" name="transaction_type" id="transaction_income_type_id" checked value="False">
+                        </li>
+                        <li>
+                            <input type="text" name="transaction_value">
+                        </li>
+                        <li>
+                            <input type="text" name="description">
+                        </li>
+                        <li>
+                            <select name="category" class="category_expense">
+                                {% for category_e in category_list_expense %}
+                                    <option value="{{ category_e.pk }}">{{ category_e.category_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </li>
+                        <li>
+                            <select name="currency">
+                                {% for currency in currency_list %}
+                                    <option value="{{ currency.pk }}">{{ currency.currency_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </li>
+                    </ul>
+                    <input type="submit" class="add_transaction" value="Додати">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

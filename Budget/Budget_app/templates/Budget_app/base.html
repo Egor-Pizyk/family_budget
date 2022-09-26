@@ -43,18 +43,18 @@
             {% endblock %}
         {% endif %}
 
-        <form action="{% url 'b_app:set_new_mono_count' %}" method="post">
-            {% csrf_token %}
-            {% for item, values in data1.items %}
-                {% if item == 'accounts' %}
-                    {% for value in values %}
-                        <input type="checkbox" name="card_data_{{ forloop.counter0 }}" id="card_number_{{ forloop.counter0 }}" value="{{ value.id }};{{ value.balance }};{{ value.maskedPan }}">
-                        <label for="card_number_{{ forloop.counter0 }}">{{ value.maskedPan }}</label> <br>
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
-            <input type="submit">
-        </form>
+{#        <form action="{% url 'b_app:set_new_mono_count' %}" method="post">#}
+{#            {% csrf_token %}#}
+{#            {% for item, values in data1.items %}#}
+{#                {% if item == 'accounts' %}#}
+{#                    {% for value in values %}#}
+{#                        <input type="checkbox" name="card_data_{{ forloop.counter0 }}" id="card_number_{{ forloop.counter0 }}" value="{{ value.id }};{{ value.balance }};{{ value.maskedPan }}">#}
+{#                        <label for="card_number_{{ forloop.counter0 }}">{{ value.maskedPan }}</label> <br>#}
+{#                    {% endfor %}#}
+{#                {% endif %}#}
+{#            {% endfor %}#}
+{#            <input type="submit">#}
+{#        </form>#}
 
     </div>
 </div>
