@@ -1,7 +1,38 @@
-<form action="{% url 'b_app:create_category' %}" method="post" id="create_category">
-    <div id="hide_cat_form">x</div>
-    {% csrf_token %}
-    <input type="text" name="category_name">
-    <input type="checkbox" name="transaction_type">
-    <input type="submit" value="create">
-</form>
+{% load static %}
+
+<div class="pop_up_form" id="pop_up_form_3">
+    <div class="wrapper">
+
+        <form action="{% url 'b_app:create_category' %}" method="post" id="create_category">
+            <div class="form_label_list">
+                <ul>
+                    <li>Назва категорії</li>
+                    <li>Категорія доходу</li>
+                    <li>Категорія витрати</li>
+                </ul>
+            </div>
+
+            <div class="form_content">
+                <div class="pop_up_header">
+                    <div class="pop_up_form_header">Додати категорію</div>
+                    <img src="{% static 'Budget_app/images/Group 24.svg' %}" alt="" id="hide_cat_form">
+                </div>
+                <div class="pop_up_form_block">
+                    {% csrf_token %}
+                    <ul>
+                        <li>
+                            <input type="text" name="category_name">
+                        </li>
+                        <li>
+                            <input type="checkbox" name="transaction_type">
+                        </li>
+                        <li>
+                            <input type="checkbox">
+                        </li>
+                    </ul>
+                    <input type="submit" value="create">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

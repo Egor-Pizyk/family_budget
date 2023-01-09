@@ -12,8 +12,8 @@ from django.db.models import Sum
 from Budget_app.forms import RegisterUserForm, CreateCategoryForm, CreateCountForm, CreateCountValueForm, \
     CreateTransferToCard, UserLoginForm, PasswordResetForm, PasswordResetDoneForm
 from Budget_app.models import CategoriesList, CountsList, CurrencyList, CountValues
-from Budget_app.utils import set_remainder, set_transfer_utils, get_currency_values, get_data_from_monobank, \
-    email_sender, get_more_info
+from Budget_app.utils import set_remainder, set_transfer_utils, get_currency_values, \
+    email_sender
 
 headers = [
     {'header': '#', 'class_name': 'row_id'},
@@ -36,11 +36,7 @@ def home(request):
         'currency_list': CurrencyList.objects.all(),
         'count_values': CountValues.objects.filter(count_list_id__user_id=request.user.pk),
         'table_header': headers,
-        # 'currency_values': get_currency_values(),
-        # 'data1': get_data_from_monobank(),
-        # 'data2': get_more_info()
     }
-    # get_data_from_monobank()
     return render(request, 'Budget_app/base.html', context)
 
 
@@ -56,22 +52,6 @@ class AuthUserView(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('b_app:home')
-
-
-class AddCountFromMono(LoginRequiredMixin, View):
-    login_url = reverse_lazy('b_app:login')
-
-    def post(self, request):
-        user_id = request.user.pk
-        for item in request.POST:
-            if item != 'csrfmiddlewaretoken':
-                card_token, balance, count_name = request.POST[item].split(';')
-                CountsList.objects.create(
-                    user_id_id=user_id, count_name=count_name[2:-2], balance=balance,
-                    card_token=card_token
-                )
-        return redirect('b_app:home')
-
 
 @login_required
 def user_logout(request):

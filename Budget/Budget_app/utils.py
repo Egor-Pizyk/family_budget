@@ -1,6 +1,5 @@
 from datetime import date
 
-import monobank as monobank
 import requests
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -36,26 +35,6 @@ def get_currency_values():
     data = response.json()
     returned_cur = [x for x in data if x['cc'] in ['USD', 'EUR']]
     return returned_cur
-
-
-def get_more_info():
-    url = f'https://api.monobank.ua/personal/statement/{settings.MONO_COUNT_1}/1659350532/1660128132'
-    response = requests.get(url, headers={"X-Token": settings.MONO_TOKEN})
-    data = response.json()
-    print(data)
-
-    return data
-
-
-def get_data_from_monobank():
-    url = f'https://api.monobank.ua/personal/client-info'
-    response = requests.get(url, headers={"X-Token": settings.MONO_TOKEN})
-    data = response.json()
-    print(data)
-    for i in data['accounts']:
-        print(i)
-
-    return data
 
 
 def email_sender(request):

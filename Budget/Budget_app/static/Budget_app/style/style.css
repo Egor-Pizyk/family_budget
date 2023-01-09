@@ -487,7 +487,7 @@ body{
     border-radius: 30px;
 }
 
-#pop_up_form, #pop_up_form_1{
+#pop_up_form, #pop_up_form_1, #pop_up_form_2, #pop_up_form_3{
     display: none;
     position: fixed;
     width: 100%;

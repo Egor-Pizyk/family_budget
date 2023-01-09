@@ -19,5 +19,4 @@ urlpatterns = [
     path('', views.home, name='home'),
     # path('message-page', views.messages_page, name='messages_page'),
 
-    path('set_new_mono_count/', views.AddCountFromMono.as_view(), name='set_new_mono_count'),
 ]

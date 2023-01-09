@@ -1,0 +1,29 @@
+[
+  {
+    "model": "Budget_app.CurrencyList",
+    "pk": 1,
+    "fields": {
+      "currency_name": "₴",
+      "currency_value": 1,
+      "update_dt": "2000-01-01 00:00:00"
+    }
+  },
+  {
+    "model": "Budget_app.CurrencyList",
+    "pk": 2,
+    "fields": {
+      "currency_name": "€",
+      "currency_value": 38,
+      "update_dt": "2000-01-01 00:00:00"
+    }
+  },
+  {
+    "model": "Budget_app.CurrencyList",
+    "pk": 3,
+    "fields": {
+      "currency_name": "$",
+      "currency_value": 36,
+      "update_dt": "2000-01-01 00:00:00"
+    }
+  }
+]

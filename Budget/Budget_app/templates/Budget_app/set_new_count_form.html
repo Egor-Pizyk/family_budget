@@ -1,7 +1,34 @@
-<form action="{% url 'b_app:create_count' %}" method="post" id="create_count">
-    <div id="hide_count_form">x</div>
-    {% csrf_token %}
-    <input type="text" name="count_name">
-    <input type="text" name="balance">
-    <input type="submit" value="create">
-</form>
+{% load static %}
+
+<div class="pop_up_form" id="pop_up_form_2">
+    <div class="wrapper">
+
+        <form action="{% url 'b_app:create_count' %}" method="post" id="create_count">
+            <div class="form_label_list">
+                <ul>
+                    <li>Рахунок</li>
+                    <li>Сума</li>
+                </ul>
+            </div>
+
+            <div class="form_content">
+                <div class="pop_up_header">
+                    <div class="pop_up_form_header">Додати рахунок</div>
+                    <img src="{% static 'Budget_app/images/Group 24.svg' %}" alt="" id="hide_count_form">
+                </div>
+                <div class="pop_up_form_block">
+                    {% csrf_token %}
+                    <ul>
+                        <li>
+                            <input type="text" name="count_name">
+                        </li>
+                        <li>
+                            <input type="text" name="balance">
+                        </li>
+                    </ul>
+                    <input type="submit" class="add_transaction" value="Додати">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

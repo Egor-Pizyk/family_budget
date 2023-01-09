@@ -21,7 +21,7 @@
                             <td class="count_list_id">{{ i.count_list_id.count_name }}</td>
                             <td class="category">{{ i.category.category_name }}</td>
                             <td class="description">{{ i.description|truncatechars:15 }}</td>
-                            <td class="remainder">{{ i.remainder|floatformat  }}</td>
+                            <td class="remainder">{{ i.remainder|floatformat }} ₴</td>
                         </tr>
                     {% endfor %}
                 </form>

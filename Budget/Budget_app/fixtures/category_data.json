@@ -1,0 +1,56 @@
+[
+  {
+    "model": "Budget_app.CategoriesList",
+    "pk": 1,
+    "fields": {
+      "user_id": 1,
+      "category_name": "Їжа",
+      "transaction_type": false
+    }
+  },
+    {
+    "model": "Budget_app.CategoriesList",
+    "pk": 2,
+    "fields": {
+      "user_id": 1,
+      "category_name": "Медицина",
+      "transaction_type": false
+    }
+  },
+      {
+    "model": "Budget_app.CategoriesList",
+    "pk": 3,
+    "fields": {
+      "user_id": 1,
+      "category_name": "Одяг",
+      "transaction_type": false
+    }
+  },
+  {
+    "model": "Budget_app.CategoriesList",
+    "pk": 4,
+    "fields": {
+      "user_id": 1,
+      "category_name": "Зарплата",
+      "transaction_type": true
+    }
+  },
+          {
+    "model": "Budget_app.CategoriesList",
+    "pk": 5,
+    "fields": {
+      "user_id": 1,
+      "category_name": "Депозит",
+      "transaction_type": true
+    }
+  },
+            {
+    "model": "Budget_app.CategoriesList",
+    "pk": 6,
+    "fields": {
+      "user_id": 1,
+      "category_name": "Облігації",
+      "transaction_type": true
+    }
+  }
+]
